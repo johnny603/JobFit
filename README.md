@@ -51,12 +51,12 @@ The app will output:
 - **Spring Boot**: (Planned) For API integration.
 
 ## Roadmap
-### **Phase 1: Basic Matching (✅ In Progress)**
-- [ ] Implement basic resume parsing.
-- [ ] Extract skills and qualifications.
-- [ ] Match resumes with job descriptions.
+### **Phase 1: Basic Matching
+- [X] Implement basic resume parsing.
+- [X] Extract skills and qualifications.
+- [X] Match resumes with job descriptions.
 
-### **Phase 2: Optimization Features**
+### **Phase 2: Optimization Features** (✅ In Progress)**
 - [ ] Suggest missing keywords.
 - [ ] Provide real-time resume feedback.
 - [ ] Improve matching accuracy.
