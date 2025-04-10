@@ -71,7 +71,7 @@ The app will output:
 - [ ] Enable recruiter dashboard.
 - [ ] Deploy as a web application.
 
-### **Phase 5: Integrate new API
+### **Possible Phase 5: Integrate new API
 - [ ] Use APIJobs, an API that scraps all jobs in the world!
 
 ## Contributing
