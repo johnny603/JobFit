@@ -122,7 +122,7 @@ To deploy JobFit as a web application, follow these steps:
    ```
 2. **Run the application**:
    ```bash
-   java -jar target/jobfit-jar-with-dependencies.jar (does not work)
+   java -jar target/jobfit-jar-with-dependencies.jar
    ```
 3. **Access the web application**:
    Open your web browser and navigate to `http://localhost:8080`.
