@@ -32,7 +32,7 @@
         </dependency>
         <dependency>
             <groupId>org.apache.poi</groupId>
-            <artifactId>poi-ooxml</artifactId>
+            <artifactId>poi-ooxml</groupId>
             <version>5.2.3</version>
         </dependency>
         
@@ -67,6 +67,30 @@
             <artifactId>junit-jupiter-engine</artifactId>
             <version>5.9.3</version>
             <scope>test</scope>
+        </dependency>
+
+        <!-- Web Application Deployment -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>2.6.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <version>2.6.3</version>
+        </dependency>
+
+        <!-- Language Detection and Translation -->
+        <dependency>
+            <groupId>com.detectlanguage</groupId>
+            <artifactId>detectlanguage</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.cloud</groupId>
+            <artifactId>google-cloud-translate</artifactId>
+            <version>1.95.0</version>
         </dependency>
     </dependencies>
     

@@ -8,6 +8,8 @@
 - **Keyword Optimization**: Highlights missing keywords to improve resume effectiveness.
 - **Real-Time Feedback**: Provides suggestions to enhance resume content and formatting.
 - **Automated Job Recommendations**: Offers job listings tailored to the user's profile.
+- **Multi-Language Resume Support**: Supports resumes in multiple languages and translates them for analysis.
+- **Recruiter Dashboard**: Provides a dashboard for recruiters to manage job postings and view candidate matches.
 
 ## Installation
 ### Prerequisites
@@ -47,7 +49,9 @@ The app will output:
 - **Apache POI**: Handles `.docx` file parsing.
 - **PdfBox**: Processes `.pdf` files.
 - **OpenNLP**: Performs Natural Language Processing (NLP) for resume analysis.
-- **Spring Boot**: (Planned) For API integration.
+- **Spring Boot**: For API integration and web application deployment.
+- **DetectLanguage**: Detects the language of the resume.
+- **Google Cloud Translate**: Translates resumes to English for analysis.
 
 ## Roadmap
 ### **Phase 1: Basic Matching
@@ -66,9 +70,9 @@ The app will output:
 - [X] Add UI for job seekers.
 
 ### **Phase 4: Scaling & Enhancements**
-- [ ] Support multi-language resumes.
-- [ ] Enable recruiter dashboard.
-- [ ] Deploy as a web application.
+- [X] Support multi-language resumes.
+- [X] Enable recruiter dashboard.
+- [X] Deploy as a web application.
 
 ### **Possible Phase 5: Integrate new API
 - [ ] Use APIJobs, an API that scraps all jobs in the world!
@@ -104,3 +108,31 @@ To set up the job listing API integration, follow these steps:
 2. **Configure API Key**: Add the API key to your environment variables or configuration file.
 3. **Update API URL**: Ensure the API URL in the code points to the correct endpoint.
 4. **Run the Application**: Execute the application to fetch and display job listings from the API.
+
+## Deploying as a Web Application
+To deploy JobFit as a web application, follow these steps:
+
+1. **Build the application**:
+   ```bash
+   mvn clean package
+   ```
+2. **Run the application**:
+   ```bash
+   java -jar target/jobfit.jar
+   ```
+3. **Access the web application**:
+   Open your web browser and navigate to `http://localhost:8080`.
+
+## Multi-Language Resume Support
+JobFit now supports resumes in multiple languages. The application will automatically detect the language of the resume and translate it to English for analysis. Currently, the following languages are supported:
+- English
+- Spanish
+- French
+- German
+
+## Recruiter Dashboard
+JobFit includes a recruiter dashboard that allows recruiters to manage job postings and view candidate matches. To access the recruiter dashboard, follow these steps:
+
+1. **Log in to the web application**.
+2. **Navigate to the recruiter dashboard**.
+3. **Manage job postings and view candidate matches**.
