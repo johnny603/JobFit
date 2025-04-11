@@ -1,4 +1,4 @@
-# JobFit: AI-Powered Job Matching App
+# JobFit: AI-Powered Job Matching App (in progress)
 
 **JobFit** is an AI-powered application that helps job seekers find the best job opportunities based on their skills, experience, and preferences. It analyzes resumes, matches them with job descriptions, and provides insights to improve job fit.
 
@@ -122,7 +122,7 @@ To deploy JobFit as a web application, follow these steps:
    ```
 2. **Run the application**:
    ```bash
-   java -jar target/jobfit-jar-with-dependencies.jar
+   java -jar target/jobfit-jar-with-dependencies.jar (does not work)
    ```
 3. **Access the web application**:
    Open your web browser and navigate to `http://localhost:8080`.
