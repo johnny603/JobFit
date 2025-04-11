@@ -1,4 +1,3 @@
-
 # JobFit: AI-Powered Job Matching App
 
 **JobFit** is an AI-powered application that helps job seekers find the best job opportunities based on their skills, experience, and preferences. It analyzes resumes, matches them with job descriptions, and provides insights to improve job fit.
@@ -56,10 +55,10 @@ The app will output:
 - [X] Extract skills and qualifications.
 - [X] Match resumes with job descriptions.
 
-### **Phase 2: Optimization Features** (✅ In Progress)**
-- [ ] Suggest missing keywords.
-- [ ] Provide real-time resume feedback.
-- [ ] Improve matching accuracy.
+### **Phase 2: Optimization Features** (✅ Implemented)**
+- [X] Suggest missing keywords.
+- [X] Provide real-time resume feedback.
+- [X] Improve matching accuracy.
 
 ### **Phase 3: Advanced Job Matching**
 - [ ] Integrate job listing APIs.
