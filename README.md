@@ -35,7 +35,7 @@
    ```
 5. **Run the application**:
    ```bash
-   java -jar target/jobfit-jar-with-dependencies.jar
+   java -jar target/jobfit-jar-with-dependencies.jar (does not work)
    ```
 
 ## Usage
@@ -78,9 +78,6 @@ The app will output:
 - [X] Enable recruiter dashboard.
 - [X] Deploy as a web application.
 
-### **Possible Phase 5: Integrate new API
-- [ ] Use APIJobs, an API that scraps all jobs in the world!
-
 ## Contributing
 Contributions are welcome! Follow these steps:
 1. **Fork the repository**.
@@ -122,7 +119,7 @@ To deploy JobFit as a web application, follow these steps:
    ```
 2. **Run the application**:
    ```bash
-   java -jar target/jobfit-jar-with-dependencies.jar
+   java -jar target/jobfit-jar-with-dependencies.jar (does not work)
    ```
 3. **Access the web application**:
    Open your web browser and navigate to `http://localhost:8080`.
