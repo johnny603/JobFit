@@ -113,16 +113,49 @@ To set up the job listing API integration, follow these steps:
 ## Deploying as a Web Application
 To deploy JobFit as a web application, follow these steps:
 
-1. **Build the application**:
-   ```bash
-   mvn clean package
-   ```
-2. **Run the application**:
-   ```bash
-   java -jar target/jobfit-jar-with-dependencies.jar (does not work)
-   ```
-3. **Access the web application**:
-   Open your web browser and navigate to `http://localhost:8080`.
+### Prerequisites
+- Java 11 or higher installed
+- Maven installed
+- Git (for cloning the repository)
+
+### Step 1: Clone and Navigate
+```bash
+git clone https://github.com/your-username/jobfit.git
+cd jobfit
+```
+
+### Step 2: Build the Application
+```bash
+mvn clean package
+```
+This will create an executable JAR file in the `target` directory.
+
+### Step 3: Run the Application
+```bash
+java -jar target/jobfit-0.1.0-SNAPSHOT.jar
+```
+
+### Step 4: Access the Application
+Once the application is running, you can access it through your web browser:
+- Open your web browser
+- Navigate to `http://localhost:8080`
+
+### Available Endpoints
+The application provides the following REST endpoints:
+- `POST /api/analyze` - Analyze job fit between resume and job description
+  - Parameters: 
+    - `resume`: Path to resume file
+    - `jobDescription`: Path to job description file
+- `GET /api/recommendations` - Get job recommendations based on match score
+  - Parameters:
+    - `matchScore`: Match score value
+
+### Troubleshooting
+If you encounter any issues:
+1. Ensure Java 11+ is installed and properly configured
+2. Verify Maven is installed and in your PATH
+3. Check that port 8080 is not in use by another application
+4. Review the application logs for any error messages
 
 ## Multi-Language Resume Support
 JobFit now supports resumes in multiple languages. The application will automatically detect the language of the resume and translate it to English for analysis. Currently, the following languages are supported:
