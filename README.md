@@ -132,7 +132,7 @@ This will create an executable JAR file in the `target` directory.
 
 ### Step 3: Run the Application
 ```bash
-java -jar target/jobfit-0.1.0-SNAPSHOT.jar
+java -jar target/jobfit-0.1.0-SNAPSHOT.jar (now leads to error page but localhost works)
 ```
 
 ### Step 4: Access the Application
