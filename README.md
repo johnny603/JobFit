@@ -61,9 +61,9 @@ The app will output:
 - [X] Improve matching accuracy.
 
 ### **Phase 3: Advanced Job Matching**
-- [ ] Integrate job listing APIs.
-- [ ] Implement a scoring system for job fit.
-- [ ] Add UI for job seekers.
+- [X] Integrate job listing APIs.
+- [X] Implement a scoring system for job fit.
+- [X] Add UI for job seekers.
 
 ### **Phase 4: Scaling & Enhancements**
 - [ ] Support multi-language resumes.
@@ -96,6 +96,11 @@ This project is licensed under the **MIT License**.
 ---
 
 ### **🚀 Get Started Today and Find Your Perfect Job Fit!**
-```
 
-This README provides an overview of **JobFit**, installation instructions, a simple roadmap, and contribution guidelines. Let me know if you’d like to tweak anything! 🚀
+## Setting up Job Listing API Integration
+To set up the job listing API integration, follow these steps:
+
+1. **Obtain API Key**: Register on the job listing API provider's website and obtain an API key.
+2. **Configure API Key**: Add the API key to your environment variables or configuration file.
+3. **Update API URL**: Ensure the API URL in the code points to the correct endpoint.
+4. **Run the Application**: Execute the application to fetch and display job listings from the API.
