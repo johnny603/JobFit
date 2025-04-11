@@ -55,7 +55,7 @@ The app will output:
 - [X] Extract skills and qualifications.
 - [X] Match resumes with job descriptions.
 
-### **Phase 2: Optimization Features** (✅ Implemented)**
+### **Phase 2: Optimization Features**
 - [X] Suggest missing keywords.
 - [X] Provide real-time resume feedback.
 - [X] Improve matching accuracy.
