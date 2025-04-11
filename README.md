@@ -29,9 +29,13 @@
    ```bash
    mvn install
    ```
-4. **Run the application**:
+4. **Build the application**:
    ```bash
-   java -jar jobfit.jar
+   mvn clean package
+   ```
+5. **Run the application**:
+   ```bash
+   java -jar target/jobfit.jar
    ```
 
 ## Usage
