@@ -8,6 +8,7 @@ public class AnalysisResult {
     private List<String> strengths = new ArrayList<>();
     private List<String> missingKeywords = new ArrayList<>();
     private List<String> suggestions = new ArrayList<>();
+    private List<String> realTimeFeedback = new ArrayList<>();
     
     public double getMatchScore() {
         return matchScore;
@@ -39,5 +40,13 @@ public class AnalysisResult {
     
     public void setSuggestions(List<String> suggestions) {
         this.suggestions = suggestions;
+    }
+
+    public List<String> getRealTimeFeedback() {
+        return realTimeFeedback;
+    }
+
+    public void setRealTimeFeedback(List<String> realTimeFeedback) {
+        this.realTimeFeedback = realTimeFeedback;
     }
 }

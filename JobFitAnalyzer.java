@@ -46,11 +46,15 @@ public class JobFitAnalyzer {
         // Identify strengths
         List<String> strengths = identifyStrengths(resumeContent, jobDescContent, matchingSkills);
         
+        // Generate real-time feedback
+        List<String> realTimeFeedback = generateRealTimeFeedback(resumeContent);
+        
         AnalysisResult result = new AnalysisResult();
         result.setMatchScore(matchScore);
         result.setStrengths(strengths);
         result.setMissingKeywords(new ArrayList<>(missingKeywords));
         result.setSuggestions(suggestions);
+        result.setRealTimeFeedback(realTimeFeedback);
         
         logger.info("Job fit analysis completed with match score: {}%", String.format("%.1f", matchScore));
         return result;
@@ -154,5 +158,28 @@ public class JobFitAnalyzer {
         }
         
         return strengths;
+    }
+    
+    private List<String> generateRealTimeFeedback(String resumeContent) {
+        List<String> feedback = new ArrayList<>();
+        
+        // Check for common resume issues and provide feedback
+        if (resumeContent.length() < 500) {
+            feedback.add("Your resume appears to be too short. Consider adding more details about your experience and skills.");
+        }
+        
+        if (!resumeContent.toLowerCase().contains("summary")) {
+            feedback.add("Add a summary section to provide an overview of your qualifications and career goals.");
+        }
+        
+        if (!resumeContent.toLowerCase().contains("contact")) {
+            feedback.add("Ensure your contact information is included and up-to-date.");
+        }
+        
+        if (Pattern.compile("\\b(i|me|my|mine)\\b", Pattern.CASE_INSENSITIVE).matcher(resumeContent).find()) {
+            feedback.add("Avoid using first-person pronouns (I, me, my) in your resume.");
+        }
+        
+        return feedback;
     }
 }
