@@ -4,9 +4,15 @@ import com.jobfit.model.AnalysisResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 /**
  * This class provides job recommendations based on the analysis result.
@@ -43,22 +49,66 @@ public class JobRecommender {
     private List<JobRecommendation> generateRecommendations(AnalysisResult result) {
         List<JobRecommendation> recommendations = new ArrayList<>();
         
-        // In a real app, we would use APIs to fetch real job listings
-        // For now, we'll generate some random recommendations
-        int numRecommendations = Math.min(5, 3 + (int)(result.getMatchScore() / 20));
+        // Fetch real job listings from API
+        List<JobRecommendation> apiRecommendations = fetchJobListingsFromAPI();
         
-        for (int i = 0; i < numRecommendations; i++) {
-            JobRecommendation recommendation = new JobRecommendation();
-            recommendation.setTitle(JOB_TITLES[random.nextInt(JOB_TITLES.length)]);
-            recommendation.setCompany(COMPANIES[random.nextInt(COMPANIES.length)]);
-            recommendation.setLocation(getRandomLocation());
-            recommendation.setMatchScore(getAdjustedMatchScore(result.getMatchScore()));
-            recommendations.add(recommendation);
+        // If API recommendations are available, use them
+        if (!apiRecommendations.isEmpty()) {
+            recommendations.addAll(apiRecommendations);
+        } else {
+            // Otherwise, generate some random recommendations
+            int numRecommendations = Math.min(5, 3 + (int)(result.getMatchScore() / 20));
+            
+            for (int i = 0; i < numRecommendations; i++) {
+                JobRecommendation recommendation = new JobRecommendation();
+                recommendation.setTitle(JOB_TITLES[random.nextInt(JOB_TITLES.length)]);
+                recommendation.setCompany(COMPANIES[random.nextInt(COMPANIES.length)]);
+                recommendation.setLocation(getRandomLocation());
+                recommendation.setMatchScore(getAdjustedMatchScore(result.getMatchScore()));
+                recommendations.add(recommendation);
+            }
         }
         
         // Sort by match score
         recommendations.sort((r1, r2) -> Double.compare(r2.getMatchScore(), r1.getMatchScore()));
         
+        return recommendations;
+    }
+    
+    private List<JobRecommendation> fetchJobListingsFromAPI() {
+        List<JobRecommendation> recommendations = new ArrayList<>();
+        try {
+            String apiUrl = "https://api.example.com/joblistings"; // Replace with actual API URL
+            URL url = new URL(apiUrl);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.setRequestProperty("Accept", "application/json");
+            
+            if (conn.getResponseCode() != 200) {
+                throw new RuntimeException("Failed : HTTP error code : " + conn.getResponseCode());
+            }
+            
+            BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
+            StringBuilder sb = new StringBuilder();
+            String output;
+            while ((output = br.readLine()) != null) {
+                sb.append(output);
+            }
+            conn.disconnect();
+            
+            JSONArray jsonArray = new JSONArray(sb.toString());
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                JobRecommendation recommendation = new JobRecommendation();
+                recommendation.setTitle(jsonObject.getString("title"));
+                recommendation.setCompany(jsonObject.getString("company"));
+                recommendation.setLocation(jsonObject.getString("location"));
+                recommendation.setMatchScore(jsonObject.getDouble("matchScore"));
+                recommendations.add(recommendation);
+            }
+        } catch (Exception e) {
+            logger.error("Error fetching job listings from API: {}", e.getMessage());
+        }
         return recommendations;
     }
     

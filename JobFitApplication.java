@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 public class JobFitApplication {
     private static final Logger logger = LoggerFactory.getLogger(JobFitApplication.class);
@@ -44,9 +45,12 @@ public class JobFitApplication {
             // Display results
             displayResults(result);
             
+            // Fetch job listings from API
+            List<JobRecommender.JobRecommendation> jobListings = fetchJobListingsFromAPI();
+            
             // Recommend jobs
             JobRecommender recommender = new JobRecommender();
-            recommender.recommendJobs(result);
+            recommender.recommendJobs(result, jobListings);
             
         } catch (IOException e) {
             logger.error("Error processing files: {}", e.getMessage());
@@ -75,5 +79,10 @@ public class JobFitApplication {
         result.getSuggestions().forEach(suggestion -> System.out.println("💡 " + suggestion));
         
         System.out.println("\n================================");
+    }
+    
+    private static List<JobRecommender.JobRecommendation> fetchJobListingsFromAPI() {
+        // Placeholder for actual API call implementation
+        return List.of();
     }
 }
