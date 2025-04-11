@@ -1,7 +1,8 @@
 package com.jobfit.analyzer;
 
 import com.jobfit.model.AnalysisResult;
-import org.apache.opennlp.tools.tokenize.SimpleTokenizer;
+import opennlp.tools.tokenize.SimpleTokenizer;
+import opennlp.tools.tokenize.Tokenizer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,7 +13,7 @@ import java.util.stream.Collectors;
 
 public class JobFitAnalyzer {
     private static final Logger logger = LoggerFactory.getLogger(JobFitAnalyzer.class);
-    private final SimpleTokenizer tokenizer = SimpleTokenizer.INSTANCE;
+    private final Tokenizer tokenizer;
     
     // Common skill keywords
     private static final Set<String> COMMON_SKILLS = new HashSet<>(Arrays.asList(
@@ -32,6 +33,10 @@ public class JobFitAnalyzer {
             "ci/cd", "jenkins", "git", "agile", "scrum", "leadership", "management",
             "communication", "problem-solving", "teamwork", "collaboration"
     ));
+    
+    public JobFitAnalyzer() {
+        this.tokenizer = SimpleTokenizer.INSTANCE;
+    }
     
     public AnalysisResult analyzeJobFit(String resumeContent, String jobDescContent) {
         logger.info("Starting job fit analysis");

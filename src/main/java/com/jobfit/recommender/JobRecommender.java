@@ -11,6 +11,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Map;
+import java.util.HashMap;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -46,37 +48,30 @@ public class JobRecommender {
         displayRecommendations(recommendations);
     }
     
-    private List<JobRecommendation> generateRecommendations(AnalysisResult result) {
+    private List<JobRecommendation> generateRecommendations(AnalysisResult analysisResult) {
         List<JobRecommendation> recommendations = new ArrayList<>();
-        
-        // Fetch real job listings from API
-        List<JobRecommendation> apiRecommendations = fetchJobListingsFromAPI();
-        
-        // If API recommendations are available, use them
-        if (!apiRecommendations.isEmpty()) {
-            recommendations.addAll(apiRecommendations);
-        } else {
-            // Otherwise, generate some random recommendations
-            int numRecommendations = Math.min(5, 3 + (int)(result.getMatchScore() / 20));
-            
-            for (int i = 0; i < numRecommendations; i++) {
+        try {
+            List<Map<String, Object>> jobListings = fetchJobListingsFromAPI(analysisResult);
+            for (Map<String, Object> job : jobListings) {
                 JobRecommendation recommendation = new JobRecommendation();
-                recommendation.setTitle(JOB_TITLES[random.nextInt(JOB_TITLES.length)]);
-                recommendation.setCompany(COMPANIES[random.nextInt(COMPANIES.length)]);
-                recommendation.setLocation(getRandomLocation());
-                recommendation.setMatchScore(getAdjustedMatchScore(result.getMatchScore()));
+                recommendation.setTitle((String) job.get("title"));
+                recommendation.setCompany((String) job.get("company"));
+                recommendation.setUrl((String) job.get("url"));
+                recommendation.setLocation((String) job.get("location"));
+                recommendation.setMatchScore(getAdjustedMatchScore(analysisResult, job));
                 recommendations.add(recommendation);
             }
+        } catch (Exception e) {
+            // Fallback to mock data if API call fails
+            recommendations.add(new JobRecommendation("Software Engineer", "Tech Corp", 0.95, "https://example.com/job1"));
+            recommendations.add(new JobRecommendation("Data Scientist", "Data Inc", 0.85, "https://example.com/job2"));
+            recommendations.add(new JobRecommendation("Product Manager", "Product Co", 0.75, "https://example.com/job3"));
         }
-        
-        // Sort by match score
-        recommendations.sort((r1, r2) -> Double.compare(r2.getMatchScore(), r1.getMatchScore()));
-        
         return recommendations;
     }
     
-    private List<JobRecommendation> fetchJobListingsFromAPI() {
-        List<JobRecommendation> recommendations = new ArrayList<>();
+    private List<Map<String, Object>> fetchJobListingsFromAPI(AnalysisResult analysisResult) {
+        List<Map<String, Object>> recommendations = new ArrayList<>();
         try {
             String apiUrl = "https://api.example.com/joblistings"; // Replace with actual API URL
             URL url = new URL(apiUrl);
@@ -99,12 +94,13 @@ public class JobRecommender {
             JSONArray jsonArray = new JSONArray(sb.toString());
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-                JobRecommendation recommendation = new JobRecommendation();
-                recommendation.setTitle(jsonObject.getString("title"));
-                recommendation.setCompany(jsonObject.getString("company"));
-                recommendation.setLocation(jsonObject.getString("location"));
-                recommendation.setMatchScore(jsonObject.getDouble("matchScore"));
-                recommendations.add(recommendation);
+                Map<String, Object> job = new HashMap<>();
+                job.put("title", jsonObject.getString("title"));
+                job.put("company", jsonObject.getString("company"));
+                job.put("location", jsonObject.getString("location"));
+                job.put("url", jsonObject.getString("url"));
+                job.put("matchScore", jsonObject.getDouble("matchScore"));
+                recommendations.add(job);
             }
         } catch (Exception e) {
             logger.error("Error fetching job listings from API: {}", e.getMessage());
@@ -118,10 +114,10 @@ public class JobRecommender {
         return locations[random.nextInt(locations.length)];
     }
     
-    private double getAdjustedMatchScore(double baseScore) {
+    private double getAdjustedMatchScore(AnalysisResult analysisResult, Map<String, Object> job) {
         // Vary the match score slightly for each recommendation
         double adjustment = (random.nextDouble() * 20) - 10; // -10 to +10
-        double adjustedScore = baseScore + adjustment;
+        double adjustedScore = analysisResult.getMatchScore() + adjustment;
         return Math.min(100, Math.max(50, adjustedScore)); // Keep between 50 and 100
     }
     
@@ -140,42 +136,35 @@ public class JobRecommender {
         System.out.println("In a complete implementation, these would be real job listings from job boards.");
     }
     
-    private static class JobRecommendation {
+    // Inner class for job recommendations
+    public static class JobRecommendation {
         private String title;
         private String company;
-        private String location;
         private double matchScore;
-        
-        public String getTitle() {
-            return title;
+        private String url;
+        private String location;
+
+        public JobRecommendation() {
+            // Default constructor
         }
-        
-        public void setTitle(String title) {
+
+        public JobRecommendation(String title, String company, double matchScore, String url) {
             this.title = title;
-        }
-        
-        public String getCompany() {
-            return company;
-        }
-        
-        public void setCompany(String company) {
             this.company = company;
-        }
-        
-        public String getLocation() {
-            return location;
-        }
-        
-        public void setLocation(String location) {
-            this.location = location;
-        }
-        
-        public double getMatchScore() {
-            return matchScore;
-        }
-        
-        public void setMatchScore(double matchScore) {
             this.matchScore = matchScore;
+            this.url = url;
         }
+
+        // Getters and setters
+        public String getTitle() { return title; }
+        public void setTitle(String title) { this.title = title; }
+        public String getCompany() { return company; }
+        public void setCompany(String company) { this.company = company; }
+        public double getMatchScore() { return matchScore; }
+        public void setMatchScore(double matchScore) { this.matchScore = matchScore; }
+        public String getUrl() { return url; }
+        public void setUrl(String url) { this.url = url; }
+        public String getLocation() { return location; }
+        public void setLocation(String location) { this.location = location; }
     }
 }

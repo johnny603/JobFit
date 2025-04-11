@@ -1,0 +1,10 @@
+com/jobfit/parser/ParserFactory.class
+com/jobfit/parser/DocxParser.class
+com/jobfit/recommender/JobRecommender.class
+com/jobfit/parser/TextParser.class
+com/jobfit/recommender/JobRecommender$JobRecommendation.class
+com/jobfit/model/AnalysisResult.class
+com/jobfit/parser/PdfParser.class
+com/jobfit/JobFitApplication.class
+com/jobfit/analyzer/JobFitAnalyzer.class
+com/jobfit/parser/DocumentParser.class
