@@ -20,11 +20,27 @@ public class JobFitAnalyzer {
             "node", "express", "spring", "hibernate", "sql", "nosql", "mongodb", 
             "postgresql", "oracle", "aws", "azure", "gcp", "docker", "kubernetes",
             "ci/cd", "jenkins", "git", "agile", "scrum", "leadership", "management",
+            "communication", "problem-solving", "teamwork", "collaboration",
+            "java", "python", "javascript", "html", "css", "react", "angular", "vue", 
+            "node", "express", "spring", "hibernate", "sql", "nosql", "mongodb", 
+            "postgresql", "oracle", "aws", "azure", "gcp", "docker", "kubernetes",
+            "ci/cd", "jenkins", "git", "agile", "scrum", "leadership", "management",
+            "communication", "problem-solving", "teamwork", "collaboration",
+            "java", "python", "javascript", "html", "css", "react", "angular", "vue", 
+            "node", "express", "spring", "hibernate", "sql", "nosql", "mongodb", 
+            "postgresql", "oracle", "aws", "azure", "gcp", "docker", "kubernetes",
+            "ci/cd", "jenkins", "git", "agile", "scrum", "leadership", "management",
             "communication", "problem-solving", "teamwork", "collaboration"
     ));
     
     public AnalysisResult analyzeJobFit(String resumeContent, String jobDescContent) {
         logger.info("Starting job fit analysis");
+        
+        // Detect language and translate if necessary
+        String detectedLanguage = detectLanguage(resumeContent);
+        if (!detectedLanguage.equals("en")) {
+            resumeContent = translateContent(resumeContent, detectedLanguage, "en");
+        }
         
         // Extract information from resume and job description
         Set<String> resumeSkills = extractSkills(resumeContent);
@@ -181,5 +197,15 @@ public class JobFitAnalyzer {
         }
         
         return feedback;
+    }
+    
+    private String detectLanguage(String content) {
+        // Placeholder for language detection logic
+        return "en";
+    }
+    
+    private String translateContent(String content, String sourceLang, String targetLang) {
+        // Placeholder for translation logic
+        return content;
     }
 }

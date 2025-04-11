@@ -7,81 +7,60 @@ import com.jobfit.parser.ParserFactory;
 import com.jobfit.recommender.JobRecommender;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+@SpringBootApplication
+@RestController
+@RequestMapping("/api")
 public class JobFitApplication {
     private static final Logger logger = LoggerFactory.getLogger(JobFitApplication.class);
 
     public static void main(String[] args) {
-        logger.info("Starting JobFit Application");
-        
-        if (args.length < 2) {
-            logger.error("Insufficient arguments provided");
-            System.out.println("Usage: java -jar jobfit.jar resume.pdf job-description.txt");
-            System.exit(1);
-        }
-        
-        String resumePath = args[0];
-        String jobDescriptionPath = args[1];
-        
+        SpringApplication.run(JobFitApplication.class, args);
+    }
+
+    @PostMapping("/analyze")
+    public AnalysisResult analyzeJobFit(@RequestParam("resume") String resumePath,
+                                        @RequestParam("jobDescription") String jobDescriptionPath) {
+        logger.info("Starting JobFit Analysis");
+
         try {
             // Parse resume
             File resumeFile = new File(resumePath);
             DocumentParser resumeParser = ParserFactory.getParser(resumeFile);
             String resumeContent = resumeParser.parseDocument(resumeFile);
-            
+
             // Parse job description
             File jobDescFile = new File(jobDescriptionPath);
             DocumentParser jobDescParser = ParserFactory.getParser(jobDescFile);
             String jobDescContent = jobDescParser.parseDocument(jobDescFile);
-            
+
             // Analyze match
             JobFitAnalyzer analyzer = new JobFitAnalyzer();
             AnalysisResult result = analyzer.analyzeJobFit(resumeContent, jobDescContent);
-            
-            // Display results
-            displayResults(result);
-            
-            // Fetch job listings from API
-            List<JobRecommender.JobRecommendation> jobListings = fetchJobListingsFromAPI();
-            
-            // Recommend jobs
-            JobRecommender recommender = new JobRecommender();
-            recommender.recommendJobs(result, jobListings);
-            
+
+            logger.info("JobFit Analysis completed");
+            return result;
+
         } catch (IOException e) {
             logger.error("Error processing files: {}", e.getMessage());
-            System.out.println("Error processing files: " + e.getMessage());
-            System.exit(1);
+            throw new RuntimeException("Error processing files: " + e.getMessage());
         } catch (Exception e) {
             logger.error("Unexpected error: {}", e.getMessage());
-            e.printStackTrace();
-            System.exit(1);
+            throw new RuntimeException("Unexpected error: " + e.getMessage());
         }
-        
-        logger.info("JobFit Analysis completed");
     }
-    
-    private static void displayResults(AnalysisResult result) {
-        System.out.println("\n===== JOBFIT ANALYSIS RESULTS =====");
-        System.out.println("Match Score: " + result.getMatchScore() + "%");
-        
-        System.out.println("\n----- STRENGTHS -----");
-        result.getStrengths().forEach(strength -> System.out.println("✅ " + strength));
-        
-        System.out.println("\n----- IMPROVEMENT AREAS -----");
-        result.getMissingKeywords().forEach(keyword -> System.out.println("❌ Missing: " + keyword));
-        
-        System.out.println("\n----- SUGGESTIONS -----");
-        result.getSuggestions().forEach(suggestion -> System.out.println("💡 " + suggestion));
-        
-        System.out.println("\n================================");
-    }
-    
-    private static List<JobRecommender.JobRecommendation> fetchJobListingsFromAPI() {
+
+    @GetMapping("/recommendations")
+    public List<JobRecommender.JobRecommendation> getJobRecommendations(@RequestParam("matchScore") double matchScore) {
+        logger.info("Fetching job recommendations");
+
         // Placeholder for actual API call implementation
         return List.of();
     }
