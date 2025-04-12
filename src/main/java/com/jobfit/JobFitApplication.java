@@ -5,12 +5,14 @@ import com.jobfit.model.AnalysisResult;
 import com.jobfit.parser.DocumentParser;
 import com.jobfit.parser.ParserFactory;
 import com.jobfit.recommender.JobRecommender;
+import com.jobfit.controller.CustomErrorController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.context.annotation.Import;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,6 +23,7 @@ import java.util.List;
 @SpringBootApplication
 @RestController
 @RequestMapping("/api")
+@Import(CustomErrorController.class)
 public class JobFitApplication {
     private static final Logger logger = LoggerFactory.getLogger(JobFitApplication.class);
 

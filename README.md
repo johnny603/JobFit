@@ -170,3 +170,6 @@ JobFit includes a recruiter dashboard that allows recruiters to manage job posti
 1. **Log in to the web application**.
 2. **Navigate to the recruiter dashboard**.
 3. **Manage job postings and view candidate matches**.
+
+## Custom Error Handling
+JobFit includes a custom error handling setup to provide more user-friendly error messages. The custom error controller handles the `/error` endpoint and returns a custom error message. The default whitelabel error page is disabled in the `application.properties` file.
