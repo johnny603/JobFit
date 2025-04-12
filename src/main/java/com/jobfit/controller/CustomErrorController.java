@@ -18,9 +18,4 @@ public class CustomErrorController implements ErrorController {
 
         return String.format("Error occurred with status code %d and message: %s", statusCode, errorMessage);
     }
-
-    @Override
-    public String getErrorPath() {
-        return "/error";
-    }
 }
