@@ -1,4 +1,4 @@
-# JobFit: AI-Powered Job Matching App (in progress)
+# JobFit: AI-Powered Job Matching App
 
 **JobFit** is an AI-powered application that helps job seekers find the best job opportunities based on their skills, experience, and preferences. It analyzes resumes, matches them with job descriptions, and provides insights to improve job fit.
 
@@ -35,18 +35,56 @@
    ```
 5. **Run the application**:
    ```bash
-   java -jar target/jobfit-jar-with-dependencies.jar (does not work)
+   java -jar target/jobfit-0.1.0-SNAPSHOT.jar
    ```
 
 ## Usage
-To match a resume with a job description, run:
-```bash
-java -jar jobfit.jar resume.pdf job-description.txt
+### Running the Application
+1. **Start the Spring Boot application**:
+   ```bash
+   mvn spring-boot:run
+   ```
+   The application will start on port 8081 (as configured in application.properties).
+
+### Using the Application
+1. **Prepare your files**:
+   - Place your resume in a text file (e.g., `resume.txt`)
+   - Place the job description in a text file (e.g., `job.txt`)
+   - You can use the provided sample files:
+     - `sample_resume.txt`
+     - `sample_job.txt`
+
+2. **Make an API request**:
+   You can use curl or any HTTP client to make requests to the application:
+   ```bash
+   curl -X POST http://localhost:8081/api/analyze \
+     -F "resume=@sample_resume.txt" \
+     -F "jobDescription=@sample_job.txt"
+   ```
+
+3. **View the results**:
+   The application will return:
+   - A match score between the resume and job description
+   - Analysis of skills and qualifications
+   - Suggestions for improving the resume
+
+### Example Response
+```json
+{
+  "matchScore": 85.5,
+  "skillsMatch": ["Java", "Spring Boot", "REST APIs"],
+  "missingKeywords": ["Docker", "Kubernetes"],
+  "suggestions": [
+    "Add experience with containerization tools",
+    "Include more details about your project management experience"
+  ]
+}
 ```
-The app will output:
-- A match score between the resume and job description.
-- Suggestions for improving the resume.
-- Recommended job listings.
+
+### File Format Requirements
+- Both resume and job description files should be in plain text format (.txt)
+- The application supports UTF-8 encoded files
+- Maximum file size is 10MB (as configured in application.properties)
 
 ## Tech Stack
 - **Java**: Core development language.
@@ -132,7 +170,7 @@ This will create an executable JAR file in the `target` directory.
 
 ### Step 3: Run the Application
 ```bash
-java -jar target/jobfit-0.1.0-SNAPSHOT.jar (now leads to error page but localhost works)
+java -jar target/jobfit-0.1.0-SNAPSHOT.jar
 ```
 
 ### Step 4: Access the Application
@@ -170,6 +208,3 @@ JobFit includes a recruiter dashboard that allows recruiters to manage job posti
 1. **Log in to the web application**.
 2. **Navigate to the recruiter dashboard**.
 3. **Manage job postings and view candidate matches**.
-
-## Custom Error Handling
-JobFit includes a custom error handling setup to provide more user-friendly error messages. The custom error controller handles the `/error` endpoint and returns a custom error message. The default whitelabel error page is disabled in the `application.properties` file.
