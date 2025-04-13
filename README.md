@@ -1,210 +1,163 @@
-# JobFit: AI-Powered Job Matching App
+\# 💼 JobFit: AI-Powered Job Matching Platform
 
-**JobFit** is an AI-powered application that helps job seekers find the best job opportunities based on their skills, experience, and preferences. It analyzes resumes, matches them with job descriptions, and provides insights to improve job fit.
+\*\*JobFit\*\* is an AI-powered application that helps job seekers find the most suitable job opportunities based on their skills, experience, and preferences. It analyzes resumes, matches them with job descriptions, and offers personalized improvement suggestions.
 
-## Features
-- **Smart Job Matching**: Uses AI to compare resumes with job descriptions and suggest the best matches.
-- **Resume Analysis**: Extracts skills, qualifications, and experience from resumes.
-- **Keyword Optimization**: Highlights missing keywords to improve resume effectiveness.
-- **Real-Time Feedback**: Provides suggestions to enhance resume content and formatting.
-- **Automated Job Recommendations**: Offers job listings tailored to the user's profile.
-- **Multi-Language Resume Support**: Supports resumes in multiple languages and translates them for analysis.
-- **Recruiter Dashboard**: Provides a dashboard for recruiters to manage job postings and view candidate matches.
+\---
 
-## Installation
-### Prerequisites
-- Java 11+
+\## 📑 Table of Contents
+
+1. [Features](#features)
+1. [Tech Stack](#tech-stack)
+1. [Installation](#installation)
+1. [Usage](#usage)
+1. [API Endpoints](#api-endpoints)
+1. [Contributing](#contributing)
+1. [License](#license)
+
+\---
+
+\## 🚀 Features
+
+- \*\*Smart Job Matching\*\*: Compares resumes with job listings and suggests the best matches.
+- \*\*Resume Analysis\*\*: Extracts key data like skills, education, and work experience.
+- \*\*Keyword Optimization\*\*: Highlights missing keywords and provides improvement suggestions.
+- \*\*Real-Time Feedback\*\*: Offers tips for enhancing resume content and formatting.
+- \*\*Automated Job Recommendations\*\*: Suggests job listings tailored to the user's profile.
+- \*\*Multi-Language Support\*\*: Detects and translates resumes for accurate analysis.
+- \*\*Recruiter Dashboard\*\*: Enables employers to manage job postings and view matched candidates.
+
+\---
+
+\## 🛠️ Tech Stack
+
+- \*\*Java 11+\*\*: Core development language.
+- \*\*Spring Boot\*\*: Web services and API infrastructure.
+- \*\*Apache POI\*\*: Extracts content from `.docx` files.
+- \*\*PdfBox\*\*: Extracts content from `.pdf` files.
+- \*\*OpenNLP\*\*: Used for Natural Language Processing.
+- \*\*DetectLanguage API\*\*: Identifies document language.
+- \*\*Google Cloud Translate\*\*: Translates non-English resumes for analysis.
+
+\---
+
+\## 📦 Installation
+
+\### Prerequisites
+
+- Java 11 or above
 - Maven (for dependency management)
 
-### Steps
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/your-username/jobfit.git
-   ```
-2. **Navigate to the project directory**:
-   ```bash
-   cd jobfit
-   ```
-3. **Install dependencies**:
-   ```bash
-   mvn install
-   ```
-4. **Build the application**:
-   ```bash
-   mvn clean package
-   ```
-5. **Run the application**:
-   ```bash
-   java -jar target/jobfit-0.1.0-SNAPSHOT.jar
-   ```
+\### Steps
 
-## Usage
-### Running the Application
-1. **Start the Spring Boot application**:
-   ```bash
-   mvn spring-boot:run
-   ```
-   The application will start on port 8081 (as configured in application.properties).
+1. \*\*Clone the repository\*\*:
 
-### Using the Application
-1. **Prepare your files**:
-   - Place your resume in a text file (e.g., `resume.txt`)
-   - Place the job description in a text file (e.g., `job.txt`)
-   - You can use the provided sample files:
-     - `sample_resume.txt`
-     - `sample_job.txt`
-
-2. **Make an API request**:
-   You can use curl or any HTTP client to make requests to the application:
-   ```bash
-   curl -X POST http://localhost:8081/api/analyze \
-     -F "resume=@sample_resume.txt" \
-     -F "jobDescription=@sample_job.txt"
-   ```
-
-3. **View the results**:
-   The application will return:
-   - A match score between the resume and job description
-   - Analysis of skills and qualifications
-   - Suggestions for improving the resume
-
-### Example Response
-```json
-{
-  "matchScore": 85.5,
-  "skillsMatch": ["Java", "Spring Boot", "REST APIs"],
-  "missingKeywords": ["Docker", "Kubernetes"],
-  "suggestions": [
-    "Add experience with containerization tools",
-    "Include more details about your project management experience"
-  ]
-}
-```
-
-### File Format Requirements
-- Both resume and job description files should be in plain text format (.txt)
-- The application supports UTF-8 encoded files
-- Maximum file size is 10MB (as configured in application.properties)
-
-## Tech Stack
-- **Java**: Core development language.
-- **Apache POI**: Handles `.docx` file parsing.
-- **PdfBox**: Processes `.pdf` files.
-- **OpenNLP**: Performs Natural Language Processing (NLP) for resume analysis.
-- **Spring Boot**: For API integration and web application deployment.
-- **DetectLanguage**: Detects the language of the resume.
-- **Google Cloud Translate**: Translates resumes to English for analysis.
-
-## Roadmap
-### **Phase 1: Basic Matching
-- [X] Implement basic resume parsing.
-- [X] Extract skills and qualifications.
-- [X] Match resumes with job descriptions.
-
-### **Phase 2: Optimization Features**
-- [X] Suggest missing keywords.
-- [X] Provide real-time resume feedback.
-- [X] Improve matching accuracy.
-
-### **Phase 3: Advanced Job Matching**
-- [X] Integrate job listing APIs.
-- [X] Implement a scoring system for job fit.
-- [X] Add UI for job seekers.
-
-### **Phase 4: Scaling & Enhancements**
-- [X] Support multi-language resumes.
-- [X] Enable recruiter dashboard.
-- [X] Deploy as a web application.
-
-## Contributing
-Contributions are welcome! Follow these steps:
-1. **Fork the repository**.
-2. **Create a new branch**:
-   ```bash
-   git checkout -b feature-name
-   ```
-3. **Make changes and commit**:
-   ```bash
-   git commit -am "Add new feature"
-   ```
-4. **Push your branch**:
-   ```bash
-   git push origin feature-name
-   ```
-5. **Create a pull request**.
-
-## License
-This project is licensed under the **Apache 2.0 License**.
-
----
-
-### **🚀 Get Started Today and Find Your Perfect Job Fit!**
-
-## Setting up Job Listing API Integration
-To set up the job listing API integration, follow these steps:
-
-1. **Obtain API Key**: Register on the job listing API provider's website and obtain an API key.
-2. **Configure API Key**: Add the API key to your environment variables or configuration file.
-3. **Update API URL**: Ensure the API URL in the code points to the correct endpoint.
-4. **Run the Application**: Execute the application to fetch and display job listings from the API.
-
-## Deploying as a Web Application
-To deploy JobFit as a web application, follow these steps:
-
-### Prerequisites
-- Java 11 or higher installed
-- Maven installed
-- Git (for cloning the repository)
-
-### Step 1: Clone and Navigate
-```bash
 git clone https://github.com/your-username/jobfit.git
+
+1. \*\*Navigate to the project directory\*\*:
+
 cd jobfit
-```
 
-### Step 2: Build the Application
-```bash
+1. \*\*Install dependencies\*\*:
+
+mvn install
+
+1. \*\*Build the application\*\*:
+
 mvn clean package
-```
-This will create an executable JAR file in the `target` directory.
 
-### Step 3: Run the Application
-```bash
+1. \*\*Run the application\*\*:
+
 java -jar target/jobfit-0.1.0-SNAPSHOT.jar
-```
 
-### Step 4: Access the Application
-Once the application is running, you can access it through your web browser:
-- Open your web browser
-- Navigate to `http://localhost:8080`
+\---
 
-### Available Endpoints
-The application provides the following REST endpoints:
-- `POST /api/analyze` - Analyze job fit between resume and job description
-  - Parameters: 
-    - `resume`: Path to resume file
-    - `jobDescription`: Path to job description file
-- `GET /api/recommendations` - Get job recommendations based on match score
-  - Parameters:
-    - `matchScore`: Match score value
+\## 🧑‍💻 Usage
 
-### Troubleshooting
-If you encounter any issues:
-1. Ensure Java 11+ is installed and properly configured
-2. Verify Maven is installed and in your PATH
-3. Check that port 8080 is not in use by another application
-4. Review the application logs for any error messages
+\### Start the Application
 
-## Multi-Language Resume Support
-JobFit now supports resumes in multiple languages. The application will automatically detect the language of the resume and translate it to English for analysis. Currently, the following languages are supported:
-- English
-- Spanish
-- French
-- German
+mvn spring-boot:run
 
-## Recruiter Dashboard
-JobFit includes a recruiter dashboard that allows recruiters to manage job postings and view candidate matches. To access the recruiter dashboard, follow these steps:
+The application will be available at `http://localhost:8081`.
 
-1. **Log in to the web application**.
-2. **Navigate to the recruiter dashboard**.
-3. **Manage job postings and view candidate matches**.
+\### Prepare Your Files
+
+- Save your resume as `resume.txt`.
+- Save the job description as `job.txt`.
+- Sample files provided:
+- `sample\_resume.txt`
+- `sample\_job.txt`
+
+\### Make an API Request (via cURL)
+
+curl -X POST http://localhost:8081/api/analyze \
+
+- F "resume=@sample\_resume.txt" \
+- F "jobDescription=@sample\_job.txt"
+
+\### Sample JSON Response
+
+{
+
+"matchScore": 85.5,
+
+"skillsMatch": ["Java", "Spring Boot", "REST APIs"],
+
+"missingKeywords": ["Docker", "Kubernetes"],
+
+"suggestions": [
+
+"Add experience with containerization tools",
+
+"Include more details about your project management experience"
+
+]
+
+}
+
+\---
+
+\## 🌐 API Endpoints
+
+\### POST /api/analyze
+
+- Purpose: Analyzes the match between a resume and a job description.
+- Parameters:
+- `resume`: Path to the resume file.
+- `jobDescription`: Path to the job description file.
+
+\### GET /api/recommendations
+
+- Purpose: Returns job recommendations based on the match score.
+- Parameters:
+- `matchScore`: Threshold score value.
+
+\---
+
+\## 🤝 Contributing
+
+We welcome your contributions! Follow these steps to contribute:
+
+1. Fork the repository.
+1. Create a new branch:
+
+git checkout -b feature-name
+
+1. Make your changes and commit:
+
+git commit -am "Add new feature"
+
+1. Push your branch:
+
+git push origin feature-name
+
+1. Open a pull request.
+
+\---
+
+\## 📄 License
+
+This project is licensed under the \*\*Apache 2.0 License\*\*. See the `LICENSE` file for more information.
+
+\---
+
+\### 🚀 Get Started Today and Find Your Perfect Job Fit!
