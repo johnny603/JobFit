@@ -53,19 +53,19 @@
 
 git clone https://github.com/your-username/jobfit.git
 
-1. \*\*Navigate to the project directory\*\*:
+2. \*\*Navigate to the project directory\*\*:
 
 cd jobfit
 
-1. \*\*Install dependencies\*\*:
+3. \*\*Install dependencies\*\*:
 
 mvn install
 
-1. \*\*Build the application\*\*:
+4. \*\*Build the application\*\*:
 
 mvn clean package
 
-1. \*\*Run the application\*\*:
+5. \*\*Run the application\*\*:
 
 java -jar target/jobfit-0.1.0-SNAPSHOT.jar
 
@@ -138,19 +138,22 @@ curl -X POST http://localhost:8081/api/analyze \
 We welcome your contributions! Follow these steps to contribute:
 
 1. Fork the repository.
-1. Create a new branch:
+   
+2. Choose an issue
+   
+3. Create a new branch:
 
 git checkout -b feature-name
 
-1. Make your changes and commit:
+4. Make your changes and commit:
 
 git commit -am "Add new feature"
 
-1. Push your branch:
+5. Push your branch:
 
 git push origin feature-name
 
-1. Open a pull request.
+6. Open a pull request.
 
 \---
 
