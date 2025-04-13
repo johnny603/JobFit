@@ -4,18 +4,6 @@
 
 \---
 
-\## 📑 Table of Contents
-
-1. [Features](#features)
-1. [Tech Stack](#tech-stack)
-1. [Installation](#installation)
-1. [Usage](#usage)
-1. [API Endpoints](#api-endpoints)
-1. [Contributing](#contributing)
-1. [License](#license)
-
-\---
-
 \## 🚀 Features
 
 - \*\*Smart Job Matching\*\*: Compares resumes with job listings and suggests the best matches.
