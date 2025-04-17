@@ -43,9 +43,9 @@ public class FileUploadExceptionAdvice extends ResponseEntityExceptionHandler {
             }
         }
 
-        logger.error("You can not upload this file. The maximum file size permitted is 10.0MB (You tried to upload {} MB)", fileSizeMB +"\n Maybe you could reduce the size of the file erasing blank lines");
+        logger.error("You can not upload this file. The maximum file size permitted is 10.0MB (You tried to upload {} MB)\n Maybe you could reduce the size of the file erasing blank lines",fileSizeMB);
         return ResponseEntity
                 .status(HttpStatus.PAYLOAD_TOO_LARGE)
-                .body("You can not upload this file. The maximum file size permitted is 10.0MB (You tried to upload " + fileSizeMB + " MB) \n Maybe you could reduce the size of the file erasing blank lines");
+                .body("You can not upload this file. The maximum file size permitted is 10.0MB (You tried to upload {}" + fileSizeMB + " MB) \n Maybe you could reduce the size of the file erasing blank lines");
     }
 }
