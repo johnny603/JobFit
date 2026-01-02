@@ -85,7 +85,7 @@
         <dependency>
             <groupId>com.detectlanguage</groupId>
             <artifactId>detectlanguage</artifactId>
-            <version>1.0.0</version>
+            <version>2.0.2</version>
         </dependency>
         <dependency>
             <groupId>com.google.cloud</groupId>
